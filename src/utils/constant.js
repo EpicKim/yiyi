@@ -8,7 +8,7 @@ export const USER_SPECICAL_INFO = "userSpecialInfo";
  * 小程序名称
  * @type {string}
  */
-export const PROGRAM_TITLE = '锦绣织';
+export const PROGRAM_TITLE = '千衣殿';
 
 /**
  * 用户信息
