@@ -1,15 +1,35 @@
 <template>
     <view class="container">
 
+        <swiper class="swiper" indicator-active-color="{{indicatorActiveColor}}" indicator-dots="{{indicatorDots}}"
+                autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
+            <block wx:for="{{bannerList}}" wx:key="key">
+                <swiper-item>
+                    <image src="{{item.thumb_img}}" class="slide-image" @tap="goToDetail({{item.product_id}})"/>
+                </swiper-item>
+            </block>
+        </swiper>
+
+        <view class="recommend-title">热门分类</view>
+        <view class="nav_list">
+            <navigator open-type="navigate" url="/pages/search?cid={{item.category_id}}&cname={{item.name}}" wx:for="{{hottestCateList}}" wx:key="index">
+                <image src="{{item.thumb_img}}" class="nav_icon"></image>
+                <view class="nav_text">{{item.name}}</view>
+            </navigator>
+        </view>
 
         <view class="recommend-title">火爆商品</view>
-
         <discover :list.sync="hottestList"></discover>
 
         <view class="recommend-title">最新上架</view>
         <discover :list.sync="latestList"></discover>
+        <!--加载更多时动画-->
+        <!--<bottomLoadMore :show.sync="showLoading" message="正在加载"></bottomLoadMore>-->
+        <!--暂无数据显示-->
         <placeholder :show.sync="is_empty" message="暂无发现数据"></placeholder>
-
+        <!--弹屏  types:0 图片  1：领红包   show 是否显示  @close 关闭回调  @callback 点击图片回调 或确定回调-->
+        <!--<bombscreen :types.sync="tps" :show.sync="is_show_alert" @close.user="closeAlert"-->
+                    <!--@callback.user="alertCallback"></bombscreen>-->
     </view>
 </template>
 <script>
@@ -24,7 +44,7 @@
 
     export default class Home extends wepy.page {
         config = {
-            navigationBarTitleText: '千衣殿',
+            navigationBarTitleText: '锦绣织',
         }
         components = {
             discover: Discover,
@@ -145,17 +165,16 @@
 </script>
 <style lang="less">
     .swiper {
-        height: 348rpx;
+        height: 350rpx;
     }
 
     .slide-image {
         width: 100%;
-        height: 100%;
     }
 
     .pos {
         position: absolute;
-        top: 0rpx;
+        top: 0;
         left: 0;
         right: 0;
 
@@ -187,34 +206,32 @@
         display: flex;
         font-size: 26rpx;
         justify-content: space-between;
-        padding: 17rpx 50rpx;
+        /*padding: 17rpx 50rpx;*/
+        background: #fff;
 
         navigator {
-            text-align: center
+            text-align: center;
+            padding: 20rpx;
+            border-right: 1px solid #efefef;
+            width: 25%;
         }
 
         .nav_icon {
-            height: 100rpx;
+            height: 120rpx;
             margin: 0 auto;
-            width: 100rpx;
-            margin-bottom: 14rpx;
+            width: 120rpx;
         }
 
         .nav_text {
-            font-size: 26rpx
+            font-size: 32rpx
         }
 
     }
 
     .recommend-title {
-        padding: 10rpx 0 20rpx 20rpx;
-        text-align: left;
-        color: #000000;
-        font-size: 16px;
-    }
-
-    .home_background {
-        color: 708090;
+        padding: 50rpx 0 20rpx 20rpx;
+        color: #ff0000;
+        font-weight: 700
     }
 
 </style>
