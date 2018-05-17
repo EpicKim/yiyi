@@ -44,7 +44,7 @@
 
     export default class Home extends wepy.page {
         config = {
-            navigationBarTitleText: '锦绣织',
+            navigationBarTitleText: '首页',
         }
         components = {
             discover: Discover,
