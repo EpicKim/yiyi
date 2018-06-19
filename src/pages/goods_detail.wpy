@@ -14,11 +14,17 @@
       <view class="details-title">{{detail.name}}</view>
       <view class="details_pinfo">
         <text class="price">￥{{detail.price}}</text>
-        <!--<view class="original-price">原价:{{detail.original_price}}</view>-->
+        <view class="original-price">原价:{{detail.original_price}}</view>
         <view class="product-id">商品编号:{{detail.id}}</view>
       </view>
     </view>
-    <view class="product-hint">批发价可以与我们客服联系,手机号13921113952,也可以加微信聊，二维码如下图</view>
+
+    <view class="spacing"></view>
+    <view class="details-msg">
+      <p style="font-size:14px;">如果您想批量采购,可以添加市场经理微信,二维码如下:</p>
+      <image src="/images/identify.jpeg" alt="" />
+    </view>
+    
     <view class="spacing"></view>
     <view class="detail-bottom">
       <view class="bottom-box">
@@ -78,7 +84,6 @@ import tip from '../utils/tip'
 import api from '../api/api';
 import WxParse from "../plugins/wxParse/wxParse";
 import CommentList from "../components/comment_list"
-
 export default class goodsDetail extends wepy.page {
   config = {
     navigationBarTitleText: '商品详情'
@@ -178,6 +183,7 @@ export default class goodsDetail extends wepy.page {
     let time = {};
     if (json.data.code == 0) {
       let data = json.data.data;
+      console.log(data);
       //将张杰的二维码放入最后一张图片
       data.imgs.push({
         'thumb_img':'/images/identify.jpeg',
@@ -403,11 +409,7 @@ export default class goodsDetail extends wepy.page {
     width: 100%;
   }
 }
-.product-hint {
-      background: #fff;
-      font-size: 32rpx;
-      padding-left:20rpx;
-}
+
 .details-msg {
   border-top: 1px solid #ededed;
   padding: 30rpx 30rpx;
@@ -427,14 +429,13 @@ export default class goodsDetail extends wepy.page {
     margin-top: 20rpx;
   }
   .details_pinfo {
-    padding: 10rpx 0;
+    padding: 20rpx 0;
     position: relative;
     display: flex;
     align-items: center;
     .price {
       color: #f73c3c;
       font-size: 45rpx;
-      padding-top:10rpx;
     }
     .original-price {
       font-size: 28rpx;
@@ -442,7 +443,7 @@ export default class goodsDetail extends wepy.page {
       text-decoration:line-through;
     }
     .product-id {
-      padding-left:20rpx;
+      padding-left:40rpx;
     }
     .share-box {
       text-align: center;
