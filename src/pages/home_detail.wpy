@@ -190,7 +190,7 @@ page {
 
 .discover_img {
   width: 100%;
-  height: 370rpx;
+  height: 470rpx;
 }
 
 .info {

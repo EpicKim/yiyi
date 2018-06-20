@@ -1,28 +1,28 @@
 <template>
     <view class="container">
 
-        <swiper class="swiper" indicator-active-color="{{indicatorActiveColor}}" indicator-dots="{{indicatorDots}}"
+        <!-- <swiper class="swiper" indicator-active-color="{{indicatorActiveColor}}" indicator-dots="{{indicatorDots}}"
                 autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
             <block wx:for="{{bannerList}}" wx:key="key">
                 <swiper-item>
                     <image src="{{item.thumb_img}}" class="slide-image" @tap="goToDetail({{item.product_id}})"/>
                 </swiper-item>
             </block>
-        </swiper>
+        </swiper> -->
 
-        <view class="recommend-title">热门分类</view>
+        <!-- <view class="recommend-title">热门分类</view>
         <view class="nav_list">
             <navigator open-type="navigate" url="/pages/search?cid={{item.category_id}}&cname={{item.name}}" wx:for="{{hottestCateList}}" wx:key="index">
                 <image src="{{item.thumb_img}}" class="nav_icon"></image>
                 <view class="nav_text">{{item.name}}</view>
             </navigator>
-        </view>
+        </view> -->
 
-        <view class="recommend-title">火爆商品</view>
-        <discover :list.sync="hottestList"></discover>
+        <!-- <!-- <view class="recommend-title">火爆商品</view> -->
+        <discover :list.sync="hottestList"></discover> -->
 
-        <view class="recommend-title">最新上架</view>
-        <discover :list.sync="latestList"></discover>
+        <!-- <view class="recommend-title">最新上架</view>
+        <discover :list.sync="latestList"></discover> -->
         <!--加载更多时动画-->
         <!--<bottomLoadMore :show.sync="showLoading" message="正在加载"></bottomLoadMore>-->
         <!--暂无数据显示-->
