@@ -70,13 +70,13 @@ export default class Discover extends wepy.component {
 
 .discover_list {
     .discover_img {
-        width: 200rpx;
-        height: 200rpx;
+        width: 300rpx;
+        height: 300rpx;
         position: absolute;
         padding: 20rpx 15rpx;
     }
     .info {
-        padding: 5rpx;
+        padding: 105rpx;
         color: #000000;
         font-size: 26rpx;
         line-height: 35rpx;
@@ -88,12 +88,12 @@ export default class Discover extends wepy.component {
         padding: 15rpx;
         margin-bottom: 15rpx;
         position: relative;
-        height: 240rpx;
+        height: 340rpx;
         line-height: 1.5;
     }
     .product_name{
         text-align: left;
-        margin-left: 250rpx;
+        margin-left: 350rpx;
         margin-top: 20rpx;
         font-weight: 700;
     }
