@@ -1,28 +1,28 @@
 <template>
     <view class="container">
 
-        <!-- <swiper class="swiper" indicator-active-color="{{indicatorActiveColor}}" indicator-dots="{{indicatorDots}}"
+        <swiper class="swiper" indicator-active-color="{{indicatorActiveColor}}" indicator-dots="{{indicatorDots}}"
                 autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
             <block wx:for="{{bannerList}}" wx:key="key">
                 <swiper-item>
-                    <image src="{{item.thumb_img}}" class="slide-image" @tap="goToDetail({{item.product_id}})"/>
+                    <image src="{{item.thumb_img}}" class="slide-image" @tap="goToDetail({{item.link_url}})"/>
                 </swiper-item>
             </block>
-        </swiper> -->
+        </swiper>
 
-        <!-- <view class="recommend-title">热门分类</view>
-        <view class="nav_list">
-            <navigator open-type="navigate" url="/pages/search?cid={{item.category_id}}&cname={{item.name}}" wx:for="{{hottestCateList}}" wx:key="index">
-                <image src="{{item.thumb_img}}" class="nav_icon"></image>
-                <view class="nav_text">{{item.name}}</view>
-            </navigator>
-        </view> -->
+        <!--<view class="recommend-title">热门分类</view>-->
+        <!--<view class="nav_list">-->
+            <!--<navigator open-type="navigate" url="/pages/search?cid={{item.category_id}}&cname={{item.name}}" wx:for="{{hottestCateList}}" wx:key="index">-->
+                <!--<image src="{{item.thumb_img}}" class="nav_icon"></image>-->
+                <!--<view class="nav_text">{{item.name}}</view>-->
+            <!--</navigator>-->
+        <!--</view>-->
+        <view class="recommend-title">千衣殿精选</view>
+        <discover :list.sync="hottestList"></discover>
 
-        <!-- <!-- <view class="recommend-title">火爆商品</view> -->
-        <discover :list.sync="hottestList"></discover> -->
 
-        <!-- <view class="recommend-title">最新上架</view>
-        <discover :list.sync="latestList"></discover> -->
+        <!--<view class="recommend-title">最新上架</view>-->
+        <!--<discover :list.sync="latestList"></discover>-->
         <!--加载更多时动画-->
         <!--<bottomLoadMore :show.sync="showLoading" message="正在加载"></bottomLoadMore>-->
         <!--暂无数据显示-->
@@ -44,7 +44,7 @@
 
     export default class Home extends wepy.page {
         config = {
-            navigationBarTitleText: '首页',
+            navigationBarTitleText: '千衣殿',
         }
         components = {
             discover: Discover,
@@ -95,28 +95,26 @@
                 that.hottestList = [...that.hottestList, ...json.data.data.hot];
                 that.bannerList = [...that.bannerList, ...json.data.data.banner];
                 that.latestList = [...that.latestList, ...json.data.data.latest];
-
-                that.$apply();
             } else {
                 tip.error(json.data.msg);
             }
+            that.$apply();
             that.showLoading = false;
         }
 
-        onLoad() {
+        async onLoad() {
             let that = this;
-            that.getDiscoverList();
-
+            await that.getDiscoverList();
         }
 
         computed = {}
         methods = {
-            goToDetail(product_id) {
-                if(!product_id){
-                    return ;
+            goToDetail(link_url) {
+                if (!link_url) {
+                    return;
                 }
                 wepy.navigateTo({
-                    url: `/pages/goods_detail?product_id=${product_id}`
+                    url: link_url
                 })
             },
             onShareAppMessage: function (res) {
@@ -125,7 +123,8 @@
 
                 }
                 return {
-                    title: PROGRAM_TITLE,
+                    title: `千衣殿 - 来自无锡小城里的青春`,
+                    imageUrl: 'http://wxyiyi.oss-cn-shanghai.aliyuncs.com/clothes/share/share.jpg',
                     path: '/pages/home',
                     success: function (res) {
                         // 转发成功
