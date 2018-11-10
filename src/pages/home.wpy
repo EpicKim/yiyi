@@ -5,7 +5,7 @@
                 autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
             <block wx:for="{{bannerList}}" wx:key="key">
                 <swiper-item>
-                    <image src="{{item.thumb_img}}" class="slide-image" @tap="goToDetail({{item.link_url}})"/>
+                    <image src="{{item.thumb_img}}" class="slide-image" @tap="goToDetail({{item.link_url}})" mode="widthFix"/>
                 </swiper-item>
             </block>
         </swiper>
@@ -123,8 +123,8 @@
 
                 }
                 return {
-                    title: `千衣殿 - 来自无锡小城里的青春`,
-                    imageUrl: 'http://wxyiyi.oss-cn-shanghai.aliyuncs.com/clothes/share/share.jpg',
+                    title: `千衣殿 - 精品冬装 全网最低价！`,
+                    imageUrl: 'http://wxyiyi.oss-cn-shanghai.aliyuncs.com/clothes/product/201811012305206279.jpeg',
                     path: '/pages/home',
                     success: function (res) {
                         // 转发成功
